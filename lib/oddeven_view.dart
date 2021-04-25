@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'oddeven_controller.dart';
 
 class OddEvenScreen extends StatefulWidget {
   @override
@@ -6,6 +7,8 @@ class OddEvenScreen extends StatefulWidget {
 }
 
 class _OddEvenScreenState extends State<OddEvenScreen> {
+  final controller = OddEvenController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +19,7 @@ class _OddEvenScreenState extends State<OddEvenScreen> {
         children: [
           Container(
             child: Text(
-              "Numero: XYZ",
+              "Numero: ${controller.getRandomNumber()}",
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 30,
@@ -27,7 +30,7 @@ class _OddEvenScreenState extends State<OddEvenScreen> {
           Container(
             margin: EdgeInsets.only(top: 30, bottom: 30),
             child: Text(
-              "Par",
+              "${controller.getOddEven()}",
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 35,
@@ -39,7 +42,11 @@ class _OddEvenScreenState extends State<OddEvenScreen> {
             width: 120,
             height: 40,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  controller.checkNumber();
+                });
+              },
               child: Text(
                 "Restart",
                 style: TextStyle(fontSize: 24),
